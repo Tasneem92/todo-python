@@ -1,0 +1,15 @@
+{% extends "todo_app/base.html" %}
+{% block title %}
+TODO
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <h2>
+      <a href="{{ post.get_absolute_url }}">
+        {{ post.name }}
+      </a>
+    </h2>
+  {% endfor %}
+  {% include "pagination.html" with page=posts %}
+{% endblock %}

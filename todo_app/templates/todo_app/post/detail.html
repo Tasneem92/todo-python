@@ -1,0 +1,8 @@
+{% extends "todo_app/base.html" %}
+
+{% block title %}{{ post.name }}{% endblock %}
+
+{% block content %}
+  <h1>{{ post.name }}</h1>
+  {{ post.description|truncatewords:30 }}
+{% endblock %}
