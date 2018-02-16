@@ -1,12 +1,7 @@
 from django.conf import settings
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView
 from . models import Todo, TodoMirror
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from copy import deepcopy
 
 # Create your views here.
 def post_form(request):
@@ -34,13 +29,7 @@ def todo_list(request):
 
 def new_post(request):
     if request.method == 'POST':
-        pname = request.POST.get('name')
-        pdescription = request.POST.get('description')
-        post, created = Todo.objects.get_or_create(name=pname,
-                description=pdescription)
-
-        post.save()
+        return render(request, 'todo_app/post/detail.html', {'post': post})
 
     else:
         return render(request, 'todo_app/post/new_post.html')
-    return render(request, 'todo_app/post/detail.html', {'post': post})
