@@ -1,12 +1,8 @@
 from django.conf import settings
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView
 from . models import Todo, TodoMirror
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from copy import deepcopy
 
 # Create your views here.
 def post_form(request):
