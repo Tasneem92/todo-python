@@ -36,12 +36,10 @@ def new_post(request):
     if request.method == 'POST':
         pname = request.POST.get('name')
         pdescription = request.POST.get('description')
-        post, created = Todo.objects.get_or_create(name=pname,description=pdescription)
-
+        post, created = Todo.objects.get_or_create(name=pname,
+                                description=pdescription)
         print(post.id)
         post.save()
-
-
     else:
         return render(request, 'todo_app/post/new_post.html')
     return render(request, 'todo_app/post/detail.html', {'post': post})

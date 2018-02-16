@@ -44,10 +44,6 @@ def create_mirror_obj(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=TodoMirror)
 def create_todo_obj(sender, instance, created, **kwargs):
-    if created:
-        obj = Todo.objects.create(name=instance.mname,
-                                    description=instance.mdescription)
-        obj.save()
     if not created:
         Todo.objects.filter(id=instance.id.id).update(name=instance.mname)
         Todo.objects.filter(id=instance.id.id).update(description=instance.mdescription)
