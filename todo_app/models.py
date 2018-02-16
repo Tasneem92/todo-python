@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 # Create your models here.
@@ -52,3 +52,8 @@ def create_todo_obj(sender, instance, created, **kwargs):
         Todo.objects.filter(id=instance.id.id).update(name=instance.mname)
         Todo.objects.filter(id=instance.id.id).update(description=instance.mdescription)
         pass
+
+@receiver(post_delete, sender=TodoMirror)
+def delete_todo_obj(sender, instance, **kwargs):
+    obj = Todo.objects.get(id=instance.id.id)
+    obj.delete()
